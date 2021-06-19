@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+  </head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+          
+  <script>
+    function download(name,artists) {
+      // artists = artists.split(" , ")
+      console.log(name,artists);
+      var url =  'http://localhost:3000/'+name+'/'+artists ;
+      var url =  window.location.origin+'/download/'+name+'/'+artists ;
+      
+window.open(url);
+    }
+  </script>
+  <style> 
+  .items{
+    padding: 1%;
+  }
+  </style>
+   
+  <body style="background-color: rgb(133, 184, 141); padding-top: 0;">
+    
+    <nav class="dark-green lighten-1" role="navigation" style="background-color: #259c38">
+      <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Stopify</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Me</a></li>
+
+        </ul>
+  
+        <ul id="nav-mobile" class="sidenav">
+          <li><a href="#">Navbar Link</a></li>
+          <li><a href="#">Navbar Link</a></li>
+          <li><a href="#">Navbar Link</a></li>
+          <li><a href="#">Navbar Link</a></li>
+
+        </ul>
+        <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+    <div class="section" id="index-banner">
+      <div class="container">
+        <div class="row" style="margin-bottom: 0;">
+          <center>
+          <div class="center-on-small-only">      
+            <img src=" <%= playlist.images[0].url %> " alt="" class="" style="max-height: 180px;">
+            <h2 class="header"><%=  playlist.name %> </h2>
+            <h4 class="light">By:  <%= playlist.owner.display_name %></h4>
+          </div>
+        </center>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="index-banner">
+      <div class="container">
+        <ul class="collection">
+          <% for (var i =0; i < playlist.tracks.items.length;  i++ ) { %>
+            <% var artists ="" %>
+            <% var imageurl = playlist.tracks.items[i].track.album.images[0].url === undefined ? playlist.images[0].url : playlist.tracks.items[i].track.album.images[0].url  %>
+            <% for (var j =0; j < playlist.tracks.items[i].track.artists.length;  j++ ) { %>
+              
+                <% artists += playlist.tracks.items[i].track.artists[j].name + ' , ' %>
+              <% } %>
+              <% name = "" %>
+              <% for (var t =0; t < playlist.tracks.items[i].track.name.length;  t++ ) { %>
+                <% name += playlist.tracks.items[i].track.name[t] !== '"'? playlist.tracks.items[i].track.name[t]: ''  %>
+  
+              <% } %>
+          <li class="collection-item avatar">
+            <img src=" <%= imageurl %> " alt="" class="circle">
+            <span class="title"><%= playlist.tracks.items[i].track.name %></span>
+            <p><%= artists %> <br>
+               Second Line
+            </p>
+            <p onclick='download(   "<%=  name %>","<%=  artists %>" )'  class="secondary-content" style="cursor: pointer;"><i class="material-icons">file_download</i> </p>
+
+            <!-- <a onclick='download(   "<%=  name %>","<%=  artists %>" )' class="secondary-content"><i class="material-icons">grade</i></a> -->
+          </li>
+          <% } %>
+
+        </ul>
+        </div>
+    </div>
+    
+    
+      <% for (var i =0; i < playlist.tracks.items.length;  i++ ) { %>
+      <div class="items">  
+      <br/> track_name: <%= playlist.tracks.items[i].track.name %> 
+          <br/>artists:
+          <% var artists ="" %>
+          <% for (var j =0; j < playlist.tracks.items[i].track.artists.length;  j++ ) { %>
+            
+              <% artists += playlist.tracks.items[i].track.artists[j].name + ' , ' %>
+            <% } %>
+            <% name = "" %>
+            <% for (var t =0; t < playlist.tracks.items[i].track.name.length;  t++ ) { %>
+              <% name += playlist.tracks.items[i].track.name[t] !== '"'? playlist.tracks.items[i].track.name[t]: ''  %>
+
+            <% } %>
+
+            <%= artists %>
+            <!-- <p onclick="console.log({'name': '<%=  playlist.tracks.items[i].track.name %>', 'artists' : '<%= playlist.tracks.items[i].track.artists %>' }  )" >download </p> -->
+            <p onclick='download("<%=  name %>","<%=  artists %>")' >download </p>
+
+          </div>
+      <% }  %>
+      <script>
+        console.log( "<%= playlist.tracks %>" );
+      </script>
+      
+  </body>
+</html>

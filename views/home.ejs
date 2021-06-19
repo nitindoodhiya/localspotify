@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+          
+  <title>SPotify Playlist Downloader</title>
+</head>
+<body>
+  <div class="section" id="index-banner">
+    <div class="container">
+      <div class="row" style="margin-bottom: 0;">
+        <center>
+        <div class="center-on-small-only">
+          <h1 class="header">Spotify Playlist Downloader </h1>
+          <h4 class="light">Easily download spotify playlists</h4>
+        </div>
+      </center>
+      </div>
+    </div>
+  </div>
+     <div class="section" id="input-banner">
+      <div class="container">
+        <div class="row" style="margin-top: 2pc;">
+          <center>
+            
+              <label class="active" for="playlistID" style="font-size: larger;">Playlist ID</label>
+              <input value="" id="playID" type="text" name="playlistID" type="text" placeholder="Enter PlaylistID">
+              <button class="btn waves-effect waves-light"  onclick="window.location.href=window.location.origin+'/'+ document.getElementById('playID').value">Submit
+                <i class="material-icons right">send</i>
+              </button>
+              <p>**Paste the playlist ID above, you can find ID as shown below:</p>
+              <p>For example: https://open.spotify.com/playlist/<span style="color: red; font-size: large;">7jUExJq9lJjL4M924Wc0FK</span></p>
+
+            </div>
+        </center>
+        </div>
+      </div>
+    </div>
+  
+  </body>
+</html>
